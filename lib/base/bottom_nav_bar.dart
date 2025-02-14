@@ -32,6 +32,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Title"),
+          backgroundColor: Colors.lightGreen,
         ),
         body: appScreens[_selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
