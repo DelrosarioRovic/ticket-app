@@ -3,41 +3,47 @@ import 'package:flutter/material.dart';
 import 'package:ticket_app/base/res/styles/app_styles.dart';
 import 'package:ticket_app/base/widgets/big_dot.dart';
 import 'package:ticket_app/base/widgets/layout_builder.dart';
+import 'package:ticket_app/base/widgets/ticket_card_seperator_line.dart';
+import 'package:ticket_app/base/widgets/ticket_card_text_layout.dart';
+import 'package:ticket_app/base/widgets/ticket_card_text_style.dart';
 
 class TicketCard extends StatelessWidget {
-  const TicketCard({super.key});
-
+  final Map<String, dynamic> ticket;
+  const TicketCard({super.key, required this.ticket});
+  
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return SizedBox(
       width: size.width * 0.85,
-      height: 179,
+      height: 200,
       child: Container(
         margin: EdgeInsets.only(right: 16),
         child:  Column(
             children: [
-              //to be continue later
+              //blue part of the ticket
               Container(
-                color: AppStyles.ticketBlue,
                 padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: AppStyles.ticketBlue,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(21),
+                    topRight: Radius.circular(21)
+                  )
+                ),
                 child: Column(
                   children: [
                     Row(
                       children: [
-                        Column(
-                          children: [
-                            Text("Nyc", style: AppStyles.headlineStyle3.copyWith(color: Colors.white))
-                          ],
-                        ),
+                        TicketCardTextStyle(text: ticket["from"]["code"], textAlign: TextAlign.start, textStyle: AppStyles.headlineStyle3),
                         Expanded(child: Container()),
                         BigDot(),
                         Expanded(
                           child: Stack(
                             children: [
                               SizedBox(
-                                child: AppLayoutBuilder(spaceAddjustNum: 7),
+                                child: AppLayoutBuilder(spaceAddjustNum: 7, color: Colors.white),
                               ),
                               Center(child: Icon(FluentSystemIcons.ic_fluent_airplane_filled, color: Colors.white, size: 23)),
                             ],
@@ -45,75 +51,75 @@ class TicketCard extends StatelessWidget {
                         ),
                         BigDot(),
                         Expanded(child: Container()),
-                        Column(
-                          children: [
-                            Text("Nyc", style: AppStyles.headlineStyle3.copyWith(color: Colors.white))
-                          ],
-                        ),
+                        TicketCardTextStyle(text: ticket["to"]["code"], textAlign: TextAlign.end, textStyle: AppStyles.headlineStyle3),
                       ],
                     ),
-                    const SizedBox(height: 5),
+                    SizedBox(height: 5),
                     Row(
                       children: [
-                        Text("New-York", style: AppStyles.headlineStyle3.copyWith(color: Colors.white)),
+                        SizedBox(
+                          width: 100,
+                          child: TicketCardTextStyle(textAlign: TextAlign.start, text: ticket["from"]["name"], textStyle: AppStyles.headlineStyle4)
+                        ),
                         Expanded(child: Container()),
-                        Text("8H 30M", style: AppStyles.headlineStyle3.copyWith(color: Colors.white)),
+                        SizedBox(
+                          width: 100,
+                          child: TicketCardTextStyle(textAlign: TextAlign.center, text: ticket["flying_time"], textStyle: AppStyles.headlineStyle4)
+                        ),
                         Expanded(child: Container()),
-                        Text("London", style: AppStyles.headlineStyle3.copyWith(color: Colors.white)),
+                        SizedBox(
+                          width: 100, 
+                          child: TicketCardTextStyle(textAlign: TextAlign.end, text: ticket["to"]["name"], textStyle: AppStyles.headlineStyle4)
+                        ),
                       ],
                     )
                   ],
                 ),
               ),
+              //seperator line
+              SizedBox(
+                height: 20,
+                child: TicketCardSeperatorLine()
+              ),
+              //orange part of the ticket
               Container(
-                color: AppStyles.ticketBlue,
                 padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: AppStyles.ticketOrange,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(21),
+                    bottomRight: Radius.circular(21)
+                  )
+                ),
                 child: Column(
                   children: [
                     Row(
                       children: [
-                        Column(
-                          children: [
-                            Text("Nyc", style: AppStyles.headlineStyle3.copyWith(color: Colors.white))
-                          ],
-                        ),
+                        TicketCardTextLayout(
+                          topText: ticket["date"], 
+                          bottomText: "Date", 
+                          crossAxisAlignment: CrossAxisAlignment.start
+                        ), 
                         Expanded(child: Container()),
-                        BigDot(),
-                        Expanded(
-                          child: Stack(
-                            children: [
-                              SizedBox(
-                                child: AppLayoutBuilder(spaceAddjustNum: 7),
-                              ),
-                              Center(child: Icon(FluentSystemIcons.ic_fluent_airplane_filled, color: Colors.white, size: 23)),
-                            ],
-                          ),
-                        ),
-                        BigDot(),
+                        TicketCardTextLayout(
+                          topText: ticket["departure_time"], 
+                          bottomText: "Departure time", 
+                          crossAxisAlignment: CrossAxisAlignment.center
+                        ), 
                         Expanded(child: Container()),
-                        Column(
-                          children: [
-                            Text("Nyc", style: AppStyles.headlineStyle3.copyWith(color: Colors.white))
-                          ],
-                        ),
+                        TicketCardTextLayout(
+                          topText: ticket["number"].toString(), 
+                          bottomText: "Number", 
+                          crossAxisAlignment: CrossAxisAlignment.end
+                        )
                       ],
                     ),
-                    const SizedBox(height: 5),
-                    Row(
-                      children: [
-                        Text("New-York", style: AppStyles.headlineStyle3.copyWith(color: Colors.white)),
-                        Expanded(child: Container()),
-                        Text("8H 30M", style: AppStyles.headlineStyle3.copyWith(color: Colors.white)),
-                        Expanded(child: Container()),
-                        Text("London", style: AppStyles.headlineStyle3.copyWith(color: Colors.white)),
-                      ],
-                    )
                   ],
                 ),
               ),
             ],
           ),
         ),
-    );
-  }
+      );
+    }
 }
