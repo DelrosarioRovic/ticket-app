@@ -1,11 +1,11 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:ticket_app/base/res/styles/app_styles.dart';
-import 'package:ticket_app/base/widgets/big_dot.dart';
-import 'package:ticket_app/base/widgets/layout_builder.dart';
-import 'package:ticket_app/base/widgets/ticket_card_seperator_line.dart';
-import 'package:ticket_app/base/widgets/ticket_card_text_layout.dart';
-import 'package:ticket_app/base/widgets/ticket_card_text_style.dart';
+import 'package:ticket_app/screens/home/widgets/big_dot.dart';
+import 'package:ticket_app/screens/home/widgets/layout_builder.dart';
+import 'package:ticket_app/screens/home/widgets/ticket_card_seperator_line.dart';
+import 'package:ticket_app/screens/home/widgets/ticket_card_text_layout.dart';
+import 'package:ticket_app/screens/home/widgets/ticket_card_text_style.dart';
 
 class TicketCard extends StatelessWidget {
   final Map<String, dynamic> ticket;
@@ -16,14 +16,12 @@ class TicketCard extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return SizedBox(
-      width: size.width * 0.85,
+      width: size.width * 0.81,
       height: 200,
-      child: Container(
-        margin: EdgeInsets.only(right: 16),
-        child:  Column(
-            children: [
-              //blue part of the ticket
-              Container(
+      child: Column(
+          children: [
+            //blue part of the ticket
+            Container(
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: AppStyles.ticketBlue,
@@ -76,13 +74,13 @@ class TicketCard extends StatelessWidget {
                   ],
                 ),
               ),
-              //seperator line
-              SizedBox(
+            //seperator line
+            SizedBox(
                 height: 20,
                 child: TicketCardSeperatorLine()
               ),
-              //orange part of the ticket
-              Container(
+            //orange part of the ticket
+            Container(
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: AppStyles.ticketOrange,
@@ -117,8 +115,7 @@ class TicketCard extends StatelessWidget {
                   ],
                 ),
               ),
-            ],
-          ),
+          ],
         ),
       );
     }

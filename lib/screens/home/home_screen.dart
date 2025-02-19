@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:ticket_app/base/res/media.dart';
 import 'package:ticket_app/base/res/styles/app_styles.dart';
 import 'package:ticket_app/base/utils/all_json.dart';
-import 'package:ticket_app/base/widgets/app_double_text.dart';
-import 'package:ticket_app/base/widgets/ticket_card.dart';
+import 'package:ticket_app/screens/home/widgets/app_double_text.dart';
+import 'package:ticket_app/screens/home/widgets/hotel_card.dart';
+import 'package:ticket_app/screens/home/widgets/ticket_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -19,6 +20,7 @@ class HomeScreen extends StatelessWidget {
           Padding(
             padding:const EdgeInsets.symmetric(horizontal: 20), 
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,22 +59,36 @@ class HomeScreen extends StatelessWidget {
                   )
                 ),
                 const SizedBox(height: 40),
-                const AppDoubleText(bigText: "Upcoming Flights", smallText: "View All"),
+                const AppDoubleText(bigText: "Upcoming Flights", smallText: "View All", navigateTo: "/all_tickets",),
                 const SizedBox(height: 25),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: ticketList.map((ticket) {
+                    spacing: 16,
+                    children: ticketList.take(2).map((ticket) {
                       return TicketCard(
                         ticket: ticket,
                       );
                     }).toList()
                   ) 
+                ),
+                const SizedBox(height: 40),
+                const AppDoubleText(bigText: "Hotels", smallText: "View All", navigateTo: "/all_hotels",),
+                const SizedBox(height: 25),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    spacing: 16,
+                    children: hotelList.take(2).map((hotel) {
+                      return HotelCard(
+                        hotel: hotel,
+                      );
+                    }).toList()
+                  ),
                 )
               ],
             )
           ),
-          
         ],
       ),
     );

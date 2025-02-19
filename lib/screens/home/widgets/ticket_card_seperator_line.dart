@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ticket_app/base/res/styles/app_styles.dart';
-import 'package:ticket_app/base/widgets/big_circle.dart';
-import 'package:ticket_app/base/widgets/layout_builder.dart';
+import 'package:ticket_app/screens/home/widgets/big_circle.dart';
+import 'package:ticket_app/screens/home/widgets/layout_builder.dart';
 
 class TicketCardSeperatorLine extends StatelessWidget {
   const TicketCardSeperatorLine({super.key});
