@@ -8,7 +8,6 @@ class HotelCard extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    print(hotel);
     final size = MediaQuery.of(context).size;
     return Container(
       width: size.width*0.6,
