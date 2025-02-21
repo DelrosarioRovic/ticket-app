@@ -9,7 +9,8 @@ import 'package:ticket_app/screens/home/widgets/ticket_card_text_style.dart';
 
 class TicketCard extends StatelessWidget {
   final Map<String, dynamic> ticket;
-  const TicketCard({super.key, required this.ticket});
+  final bool isColor;
+  const TicketCard({super.key, required this.ticket, this.isColor = true});
   
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class TicketCard extends StatelessWidget {
             Container(
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: AppStyles.ticketBlue,
+                  color: isColor ? AppStyles.ticketBlue : Colors.transparent,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(21),
                     topRight: Radius.circular(21)
@@ -83,7 +84,7 @@ class TicketCard extends StatelessWidget {
             Container(
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: AppStyles.ticketOrange,
+                  color: isColor ? AppStyles.ticketOrange : Colors.transparent,
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(21),
                     bottomRight: Radius.circular(21)

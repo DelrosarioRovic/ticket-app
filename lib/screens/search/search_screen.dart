@@ -19,7 +19,10 @@ class SearchScreen extends StatelessWidget {
           SizedBox(height: 40),
           Text("What are\nyou looking for?", style: AppStyles.headlineStyle1.copyWith(fontSize: 35)),
           SizedBox(height: 20),
-          AppTicketTabs(),
+          AppTicketTabs(
+            leftTabLabel: "Airline Tickets", 
+            rightTabLabel: "Hotels"
+          ),
           SizedBox(height: 25),
           AppTextIcon(icon: Icons.flight_takeoff_rounded, label: "Departure"),
           SizedBox(height: 20),
